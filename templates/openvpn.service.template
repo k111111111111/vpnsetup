@@ -1,0 +1,14 @@
+[Unit]
+Description=OpenVPN connection to %%%SERVER_NAME%%%
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/openvpn --daemon ovpn-%%%SERVER_NAME%%% --status /run/openvpn/%%%SERVER_NAME%%%.status 10 --cd %%%WORKDIR%%% --config %%%WORKDIR%%%/%%%SERVER_NAME%%%.conf
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStartPost=%%%WORKDIR%%%/iptables_add_rules.sh
+ExecStopPost=%%%WORKDIR%%%/iptables_remove_rules.sh
+WorkingDirectory=%%%WORKDIR%%%
+
+[Install]
+WantedBy=multi-user.target

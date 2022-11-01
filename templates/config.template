@@ -1,0 +1,101 @@
+###################################################
+SERVER_NAME="myvpnserver"
+###################################################
+WORKDIR=/media/mydisk/k/servers/${SERVER_NAME}
+###################################################
+EASYRSA_PKI=${WORKDIR}/pki
+###################################################
+PUBLIC_IP=8.8.8.8
+###################################################
+PORT="1194"
+###################################################
+PROTOCOL="udp"
+###################################################
+DNS1="8.8.8.8"
+###################################################
+DNS2="4.4.4.4"
+###################################################
+#customize compression (not recommended)
+COMPRESSION_ENABLED="n"
+###################################################
+#but if turned on, possible variants are
+#	"lz4-v2"
+#	"lz4"
+#	"lzo"
+#COMPRESSION_ALG="lz4-v2"
+###################################################
+#customize encryption settings
+#Unless you know what you're doing, you should stick with the default parameters
+###################################################
+#possible variants are
+#	AES-128-GCM (recommended)
+#	AES-192-GCM
+#	AES-256-GCM
+#	AES-128-CBC
+#	AES-192-CBC
+#	AES-256-CBC
+CIPHER="AES-128-GCM"
+###################################################
+#possible variants are
+#	ECDSA (recommended)
+#	RSA
+CERT_TYPE="ECDSA"
+###################################################
+#if you chose ECDSA, you have to set curve
+#possible variants are
+#	prime256v1 (recommended)
+#	secp384r1
+#	secp521r1
+CERT_CURVE="prime256v1"
+###################################################
+#and if you chose RSA, you have to set key size
+#possible variants are
+#	2048 bits (recommended)
+#	3072 bits
+#	4096 bits
+#RSA_KEY_SIZE="2048"
+###################################################
+#control channel encryption
+#possible variants are
+#	TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256 (recommended)
+#	TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
+#if ECDSA was chosen
+#and
+#	TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256 (recommended)
+#	TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384
+#if RSA was chosen
+CC_CIPHER="TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256"
+###################################################
+#kind of Diffie-Hellman key
+#possible variants are
+#	ECDH (recommended)
+#	DH
+DH_TYPE="ECDH"
+###################################################
+#if you chose ECDSA, you have to set curve
+#possible variants are
+#	prime256v1 (recommended)
+#	secp384r1
+#	secp521r1
+DH_CURVE="prime256v1"
+###################################################
+#and if you chose RSA, you have to set key size
+#possible variants are
+#	2048 bits (recommended)
+#	3072 bits
+#	4096 bits
+#DH_KEY_SIZE="2048"
+###################################################
+#digest algorithm for HMAC
+#possible variants are
+#	SHA256 (recommended)
+#	SHA384
+#	SHA512
+HMAC_ALG="SHA256"
+###################################################
+#additional layer of security to the control channel
+#possible variants are
+#	tls-crypt (recommended)
+#	tls-auth
+TLS_SIG="tls-crypt" # tls-crypt
+###################################################

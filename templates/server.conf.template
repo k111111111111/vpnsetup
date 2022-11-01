@@ -1,0 +1,31 @@
+port %%%PORT%%%
+proto %%%PROTOCOL%%%
+dev tun
+user nobody
+group %%%NOGROUP%%%
+persist-key
+persist-tun
+keepalive 10 120
+topology subnet
+server %%%VPN_IP%%% %%%VPN_SUBNET_MASK%%%
+ifconfig-pool-persist ipp.txt
+push "dhcp-option DNS %%%DNS1%%%"
+push "dhcp-option DNS %%%DNS2%%%"
+push "redirect-gateway def1 bypass-dhcp"
+%%%COMPRESSION_PARAM%%%
+%%%DH_DEFINITION%%%
+%%%TLS_PARAM%%%
+crl-verify crl.pem
+ca ca.crt
+cert %%%SERVER_NAME%%%.crt
+key %%%SERVER_NAME%%%.key
+auth %%%HMAC_ALG%%%
+cipher %%%CIPHER%%%
+ncp-ciphers %%%CIPHER%%%
+tls-server
+tls-version-min 1.2
+tls-cipher %%%CC_CIPHER%%%
+client-config-dir ccd
+status logs/status.log
+script-security 2
+verb 3
